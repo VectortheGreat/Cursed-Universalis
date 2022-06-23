@@ -1,0 +1,37 @@
+country_decisions = {
+	greek_orthodox_constantinople = {
+		potential = {
+			normal_or_historical_nations = yes
+			OR = {
+				primary_culture = greek
+				has_global_flag = cu_removed_culture_desc
+			}
+			151 = {
+				OR = {
+					NOT = { culture = ROOT }
+					NOT = { religion_group = ROOT }
+				}
+			}
+			has_global_flag = greek_need_restore_constantinople
+			has_country_flag = cursed_universalis_form_decisions
+		}
+		
+		allow = {
+			is_at_war = no
+			owns = 151
+			is_core = 151
+		}
+		
+		effect = {
+			151 = {
+				change_culture = ROOT
+				rename_capital = Constantinople
+			}
+			clr_global_flag = greek_need_restore_constantinople
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

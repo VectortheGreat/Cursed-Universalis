@@ -1,0 +1,1307 @@
+namespace = cu
+
+country_event = {		#For Player
+	id = cu.1
+	title = "cu1_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu1_desc"
+	
+	is_triggered_only = yes
+
+	option = {
+		name = cu.1a
+		custom_tooltip = cursed_universalis_ct
+		hidden_effect = {
+			random_list = {
+				3.57 = { change_religion = catholic }
+				3.57 = { change_religion = orthodox }
+				3.57 = { change_religion = protestant }
+				3.57 = { change_religion = reformed }
+				3.57 = { change_religion = coptic }
+				3.57 = { change_religion = sunni }
+				3.57 = { change_religion = shiite }
+				3.57 = { change_religion = ibadi }
+				3.57 = { change_religion = buddhism }
+				3.57 = { change_religion = vajrayana }
+				3.57 = { change_religion = mahayana }
+				3.57 = { change_religion = confucianism }
+				3.57 = { change_religion = shinto }
+				3.57 = { change_religion = hinduism }
+				3.57 = { change_religion = sikhism }
+				3.57 = { change_religion = animism }
+				3.57 = { change_religion = shamanism }
+				3.57 = { change_religion = totemism }
+				3.57 = { change_religion = inti }
+				3.57 = { change_religion = nahuatl }
+				3.57 = { change_religion = mesoamerican_religion }
+				3.57 = { change_religion = norse_pagan_reformed }
+				3.57 = { change_religion = tengri_pagan_reformed }
+				3.57 = { change_religion = jewish }
+				3.57 = { change_religion = zoroastrian }
+				3.57 = { change_religion = dreamtime }
+				3.57 = { change_religion = hussite }
+				3.57 = { change_religion = anglican }	
+			}
+			ROOT = {
+					every_owned_province = { 
+						change_religion = ROOT
+					}	
+			}
+			set_country_flag = cursed_universalis_decision
+			set_country_flag = cursed_universalis_decision31
+			clr_global_flag = the_world_is_cursed_dcs
+			ai_chance = { factor = 100 }
+		}
+	}
+}
+
+country_event = {		#For AI
+	id = cu.2
+	title = "cu2_title"
+	picture = "TOURNAMENT_eventPicture"
+	desc = "cu2_desc"
+	
+	fire_only_once = yes
+	
+	trigger ={
+		AND {
+			ai = yes
+			had_global_flag = {
+				flag = the_world_is_cursed2
+				days = 1
+			}
+		}
+	}
+	option = {
+		name = hs.2a
+			every_country {
+				limit = { ai = no }
+				every_country_including_inactive = {
+					limit = { ai =yes }
+					random_list = {
+						3.57 = { change_religion = catholic }
+						3.57 = { change_religion = orthodox }
+						3.57 = { change_religion = protestant }
+						3.57 = { change_religion = reformed }
+						3.57 = { change_religion = coptic }
+						3.57 = { change_religion = sunni }
+						3.57 = { change_religion = shiite }
+						3.57 = { change_religion = ibadi }
+						3.57 = { change_religion = buddhism }
+						3.57 = { change_religion = vajrayana }
+						3.57 = { change_religion = mahayana }
+						3.57 = { change_religion = confucianism }
+						3.57 = { change_religion = shinto }
+						3.57 = { change_religion = hinduism }
+						3.57 = { change_religion = sikhism }
+						3.57 = { change_religion = animism }
+						3.57 = { change_religion = shamanism }
+						3.57 = { change_religion = totemism }
+						3.57 = { change_religion = inti }
+						3.57 = { change_religion = nahuatl }
+						3.57 = { change_religion = mesoamerican_religion }
+						3.57 = { change_religion = norse_pagan_reformed }
+						3.57 = { change_religion = tengri_pagan_reformed }
+						3.57 = { change_religion = jewish }
+						3.57 = { change_religion = zoroastrian }
+						3.57 = { change_religion = dreamtime }
+						3.57 = { change_religion = hussite }
+						3.57 = { change_religion = anglican }	
+					}
+				}
+			}
+			set_global_flag = the_world_is_cursed
+			set_global_flag = the_world_is_cursed_dcs2
+			ai_chance = { factor = 100 }
+	}
+}
+
+
+country_event = {		#Welcome
+	id = cu.5
+	title = "cu5_title"
+	picture = "TOURNAMENT_eventPicture"
+	desc = "cu5_desc"
+	fire_only_once = yes
+
+	trigger ={
+		AND = {
+			NOT = { ai = yes }
+			has_game_started = yes
+		}
+	}
+	immediate = {
+		hidden_effect = {
+			set_hre_religion_treaty = yes
+		}
+	}
+
+	option = {
+		name = cu.5a
+		set_global_flag = the_world_is_cursed2
+		country_event = { id = cu.8 }
+		country_event = { id = cu.9 }
+		every_country = {
+			limit = {
+				ai = no
+			}
+			country_event = { id = cu.1 }
+		}
+		
+	}
+}
+
+country_event = {		#age fix
+	id = cu.6
+	title = "cu6_title"
+	picture = "TOURNAMENT_eventPicture"
+	desc = "cu6_desc"
+	fire_only_once = yes
+
+	trigger ={
+		AND {
+			ai = yes
+			is_year = 1490
+		}
+	}
+
+	option = {
+		name = cu.6a
+		enable_religion = protestant
+		enable_religion = reformed
+	}
+}
+
+country_event = {		#Papacy
+	id = cu.7
+	title = "cu7_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu7_desc"
+	fire_only_once = yes
+
+	trigger ={
+		AND {
+			NOT = { ai = yes } 
+			is_year = 1445
+			ROOT = {
+				religion = catholic
+			}
+		}
+		
+	}
+
+	option = {
+		name = cu.7a
+		PAP = {
+		change_religion = catholic
+		}
+			PAP = {
+					every_owned_province = { 
+						change_religion = catholic
+					}	
+			}
+	}
+	option = {
+		name = cu.7b
+	}
+}
+
+country_event = {		#Monuments
+	id = cu.8
+	title = "cu8_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu8_desc"
+	
+	is_triggered_only = yes
+
+	option = {
+		name = cu.8a
+		set_global_flag = cu_monuments_free
+		custom_tooltip = cu_monuments_free_tt
+	}
+	option = {
+		name = cu.8b
+	}
+}
+
+country_event = {		#Curse the Cultures
+	id = cu.9
+	title = "cu9_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu9_desc"
+	
+	is_triggered_only = yes
+
+	option = {
+		name = cu.9a
+		every_country = {
+			limit = {
+				ai = no
+			}
+			random_list = {
+				50 = { country_event = { id = cu.10 } }
+				30 = { country_event = { id = cu.11 } }
+				10 = { country_event = { id = cu.12 } }
+				10 = { country_event = { id = cu.13 } }
+			}
+		}
+		set_global_flag = cu_culture_cursed_ai
+		country_event = { id = cu.20 }
+	}
+	option = {
+		name = cu.9b
+	}
+}
+
+country_event = {		#Curse the Cultures - Player
+	id = cu.10
+	title = "cu10_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu10_desc"
+	
+	is_triggered_only = yes
+
+	option = {
+		name = cu.10a
+			random_list = {
+				1 = { change_primary_culture = pommeranian }
+				1 = { change_primary_culture = prussian }
+				1 = { change_primary_culture = lower_saxon }
+				1 = { change_primary_culture = hannoverian }
+				1 = { change_primary_culture = hessian }
+				1 = { change_primary_culture = saxon }
+				1 = { change_primary_culture = franconian }
+				1 = { change_primary_culture = swabian }
+				1 = { change_primary_culture = swiss }
+				1 = { change_primary_culture = bavarian }
+				1 = { change_primary_culture = austrian }
+				1 = { change_primary_culture = dutch }
+				1 = { change_primary_culture = flemish }
+				1 = { change_primary_culture = frisian }
+				1 = { change_primary_culture = swedish }
+				1 = { change_primary_culture = danish }
+				1 = { change_primary_culture = norwegian }
+				1 = { change_primary_culture = finnish }
+				1 = { change_primary_culture = sapmi }
+				1 = { change_primary_culture = icelandic }
+				1 = { change_primary_culture = english }
+				1 = { change_primary_culture = american }
+				1 = { change_primary_culture = welsh }
+				1 = { change_primary_culture = cornish }
+				1 = { change_primary_culture = scottish }
+				1 = { change_primary_culture = irish }
+				1 = { change_primary_culture = highland_scottish }
+				1 = { change_primary_culture = lombard }
+				1 = { change_primary_culture = tuscan }
+				1 = { change_primary_culture = sardinian }
+				1 = { change_primary_culture = romagnan }
+				1 = { change_primary_culture = ligurian }
+				1 = { change_primary_culture = venetian }
+				1 = { change_primary_culture = dalmatian }
+				1 = { change_primary_culture = neapolitan }
+				1 = { change_primary_culture = piedmontese }
+				1 = { change_primary_culture = umbrian }
+				1 = { change_primary_culture = sicilian }
+				1 = { change_primary_culture = maltese }
+				1 = { change_primary_culture = castillian }
+				1 = { change_primary_culture = mexican }
+				1 = { change_primary_culture = leonese }
+				1 = { change_primary_culture = aragonese }
+				1 = { change_primary_culture = catalan }
+				1 = { change_primary_culture = galician }
+				1 = { change_primary_culture = andalucian }
+				1 = { change_primary_culture = portugese }
+				1 = { change_primary_culture = brazilian }
+				1 = { change_primary_culture = basque }
+				1 = { change_primary_culture = cosmopolitan_french }
+				1 = { change_primary_culture = gascon }
+				1 = { change_primary_culture = normand }
+				1 = { change_primary_culture = aquitaine }
+				1 = { change_primary_culture = burgundian }
+				1 = { change_primary_culture = occitain }
+				1 = { change_primary_culture = wallonian }
+				1 = { change_primary_culture = breton }
+				1 = { change_primary_culture = uralic }
+				1 = { change_primary_culture = samoyed }
+				1 = { change_primary_culture = ostyaki }
+				1 = { change_primary_culture = ingrian }
+				1 = { change_primary_culture = croatian }
+				1 = { change_primary_culture = serbian }
+				1 = { change_primary_culture = slovene }
+				1 = { change_primary_culture = bosnian }
+				1 = { change_primary_culture = bulgarian }
+				1 = { change_primary_culture = albanian }
+				1 = { change_primary_culture = czech }
+				1 = { change_primary_culture = polish }
+				1 = { change_primary_culture = schlesian }
+				1 = { change_primary_culture = sorbian }
+				1 = { change_primary_culture = slovak }
+				1 = { change_primary_culture = transylvanian }
+				1 = { change_primary_culture = romanian }
+				1 = { change_primary_culture = hungarian }
+				1 = { change_primary_culture = russian }
+				1 = { change_primary_culture = novgorodian }
+				1 = { change_primary_culture = ryazanian }
+				1 = { change_primary_culture = byelorussian }
+				1 = { change_primary_culture = ruthenian }
+				1 = { change_primary_culture = karelian }
+				1 = { change_primary_culture = estonian }
+				1 = { change_primary_culture = lithuanian }
+				1 = { change_primary_culture = latvian }
+				1 = { change_primary_culture = greek }
+				1 = { change_primary_culture = pontic_greek }
+				1 = { change_primary_culture = goths }
+				1 = { change_primary_culture = georgian }
+				1 = { change_primary_culture = circassian }
+				1 = { change_primary_culture = dagestani }
+				1 = { change_primary_culture = armenian }
+				1 = { change_primary_culture = turkish }
+				1 = { change_primary_culture = al_misr_arabic }
+				1 = { change_primary_culture = al_suryah_arabic }
+				1 = { change_primary_culture = al_iraqiya_arabic }
+				1 = { change_primary_culture = gulf_arabic }
+				1 = { change_primary_culture = bedouin_arabic }
+				1 = { change_primary_culture = mahri_culture }
+				1 = { change_primary_culture = hejazi_culture }
+				1 = { change_primary_culture = omani_culture }
+			}
+			
+			ROOT = {
+			every_owned_province = { 
+				change_culture = ROOT
+			}	
+		}
+	}
+}
+
+country_event = {		#Curse the Cultures - Player - 2
+	id = cu.11
+	title = "cu10_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu10_desc"
+	
+	is_triggered_only = yes
+
+	option = {
+		name = cu.10a
+		hidden_effect = {
+			random_list = {
+			1 = { change_primary_culture = yemeni_culture }
+			1 = { change_primary_culture = moroccan }
+			1 = { change_primary_culture = tunisian }
+			1 = { change_primary_culture = algerian }
+			1 = { change_primary_culture = berber }
+			1 = { change_primary_culture = persian }
+			1 = { change_primary_culture = luri }
+			1 = { change_primary_culture = azerbaijani }
+			1 = { change_primary_culture = khorasani }
+			1 = { change_primary_culture = baluchi }
+			1 = { change_primary_culture = afghani }
+			1 = { change_primary_culture = kurdish }
+			1 = { change_primary_culture = mazandarani }
+			1 = { change_primary_culture = mongol }
+			1 = { change_primary_culture = chahar }
+			1 = { change_primary_culture = khalkha }
+			1 = { change_primary_culture = oirats }
+			1 = { change_primary_culture = uzbehk }
+			1 = { change_primary_culture = turkmeni }
+			1 = { change_primary_culture = uyghur }
+			1 = { change_primary_culture = khazak }
+			1 = { change_primary_culture = kirgiz }
+			1 = { change_primary_culture = aztek }
+			1 = { change_primary_culture = totonac }
+			1 = { change_primary_culture = purepecha }
+			1 = { change_primary_culture = matlatzinca }
+			1 = { change_primary_culture = tecos }
+			1 = { change_primary_culture = tepic }
+			1 = { change_primary_culture = chichimecan }
+			1 = { change_primary_culture = guamares }
+			1 = { change_primary_culture = otomi }
+			1 = { change_primary_culture = yaqui }
+			1 = { change_primary_culture = yucatec }
+			1 = { change_primary_culture = putun }
+			1 = { change_primary_culture = mayan }
+			1 = { change_primary_culture = highland_mayan }
+			1 = { change_primary_culture = lacandon }
+			1 = { change_primary_culture = wastek }
+			1 = { change_primary_culture = chontales }
+			1 = { change_primary_culture = kuba }
+			1 = { change_primary_culture = zapotek }
+			1 = { change_primary_culture = mixtec }
+			1 = { change_primary_culture = tlapanec }
+			1 = { change_primary_culture = inca }
+			1 = { change_primary_culture = aimara }
+			1 = { change_primary_culture = diaguita }
+			1 = { change_primary_culture = chimuan }
+			1 = { change_primary_culture = tupinamba }
+			1 = { change_primary_culture = guarani }
+			1 = { change_primary_culture = charruan }
+			1 = { change_primary_culture = ge }
+			1 = { change_primary_culture = jivaro }
+			1 = { change_primary_culture = chachapoyan }
+			1 = { change_primary_culture = muisca }
+			1 = { change_primary_culture = cara }
+			1 = { change_primary_culture = miskito }
+			1 = { change_primary_culture = chacoan }
+			1 = { change_primary_culture = mapuche }
+			1 = { change_primary_culture = patagonian }
+			1 = { change_primary_culture = het }
+			1 = { change_primary_culture = huarpe }
+			1 = { change_primary_culture = arawak }
+			1 = { change_primary_culture = maipurean }
+			1 = { change_primary_culture = carib }
+			1 = { change_primary_culture = guajiro }
+			1 = { change_primary_culture = aleutian }
+			1 = { change_primary_culture = inuit }
+			1 = { change_primary_culture = shawnee }
+			1 = { change_primary_culture = illini }
+			1 = { change_primary_culture = miami }
+			1 = { change_primary_culture = anishinabe }
+			1 = { change_primary_culture = algonquin }
+			1 = { change_primary_culture = cree }
+			1 = { change_primary_culture = innu }
+			1 = { change_primary_culture = mesquakie }
+			1 = { change_primary_culture = cheyenne }
+			1 = { change_primary_culture = blackfoot }
+			1 = { change_primary_culture = arapaho }
+			1 = { change_primary_culture = plains_cree }
+			1 = { change_primary_culture = bungi }
+			1 = { change_primary_culture = delaware }
+			1 = { change_primary_culture = abenaki }
+			1 = { change_primary_culture = mikmaq }
+			1 = { change_primary_culture = maliseet }
+			1 = { change_primary_culture = mahican }
+			1 = { change_primary_culture = powhatan }
+			1 = { change_primary_culture = pequot }
+			1 = { change_primary_culture = massachusset }
+			1 = { change_primary_culture = iroquois }
+			1 = { change_primary_culture = cherokee }
+			1 = { change_primary_culture = huron }
+			1 = { change_primary_culture = laurentian }
+			1 = { change_primary_culture = tionontate }
+			1 = { change_primary_culture = susquehannock }
+			1 = { change_primary_culture = dakota }
+			1 = { change_primary_culture = nakota }
+			1 = { change_primary_culture = chiwere }
+			1 = { change_primary_culture = osage }
+			1 = { change_primary_culture = wichita }
+			1 = { change_primary_culture = caddo }
+			}
+		}
+		ROOT = {
+			every_owned_province = { 
+				change_culture = ROOT
+			}	
+		}
+	}
+}
+
+country_event = {		#Curse the Cultures - Player - 3
+	id = cu.12
+	title = "cu10_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu10_desc"
+	
+	is_triggered_only = yes
+
+	option = {
+		name = cu.10a
+		hidden_effect = {
+			random_list = {
+			1 = { change_primary_culture = pawnee }
+			1 = { change_primary_culture = creek }
+			1 = { change_primary_culture = choctaw }
+			1 = { change_primary_culture = chickasaw }
+			1 = { change_primary_culture = yuchi }
+			1 = { change_primary_culture = yoron }
+			1 = { change_primary_culture = catawba }
+			1 = { change_primary_culture = natchez }
+			1 = { change_primary_culture = yamasee }
+			1 = { change_primary_culture = pueblo }
+			1 = { change_primary_culture = piman }
+			1 = { change_primary_culture = shoshone }
+			1 = { change_primary_culture = kiowa }
+			1 = { change_primary_culture = apache }
+			1 = { change_primary_culture = mescalero }
+			1 = { change_primary_culture = lipan }
+			1 = { change_primary_culture = navajo }
+			1 = { change_primary_culture = chipewyan }
+			1 = { change_primary_culture = haida }
+			1 = { change_primary_culture = athabascan }
+			1 = { change_primary_culture = salish }
+			1 = { change_primary_culture = chinook }
+			1 = { change_primary_culture = yokuts }
+			1 = { change_primary_culture = manchu_new }
+			1 = { change_primary_culture = chihan }
+			1 = { change_primary_culture = cantonese }
+			1 = { change_primary_culture = jin }
+			1 = { change_primary_culture = wu }
+			1 = { change_primary_culture = chimin }
+			1 = { change_primary_culture = hakka }
+			1 = { change_primary_culture = gan }
+			1 = { change_primary_culture = xiang }
+			1 = { change_primary_culture = sichuanese }
+			1 = { change_primary_culture = jianghuai }
+			1 = { change_primary_culture = xibei }
+			1 = { change_primary_culture = hubei }
+			1 = { change_primary_culture = zhongyuan }
+			1 = { change_primary_culture = shandong_culture }
+			1 = { change_primary_culture = vietnamese }
+			1 = { change_primary_culture = korean }
+			1 = { change_primary_culture = togoku }
+			1 = { change_primary_culture = japanese }
+			1 = { change_primary_culture = kyushuan }
+			1 = { change_primary_culture = tibetan }
+			1 = { change_primary_culture = yi }
+			1 = { change_primary_culture = bai }
+			1 = { change_primary_culture = miao }
+			1 = { change_primary_culture = malayan }
+			1 = { change_primary_culture = sumatran }
+			1 = { change_primary_culture = acehnese }
+			1 = { change_primary_culture = javanese }
+			1 = { change_primary_culture = sundanese }
+			1 = { change_primary_culture = filipino }
+			1 = { change_primary_culture = bornean }
+			1 = { change_primary_culture = madagascan }
+			1 = { change_primary_culture = sulawesi }
+			1 = { change_primary_culture = moluccan }
+			1 = { change_primary_culture = nusa_tenggara }
+			1 = { change_primary_culture = cham }
+			1 = { change_primary_culture = central_thai }
+			1 = { change_primary_culture = northern_thai }
+			1 = { change_primary_culture = lao }
+			1 = { change_primary_culture = shan }
+			1 = { change_primary_culture = zhuang }
+			1 = { change_primary_culture = khmer }
+			1 = { change_primary_culture = mon }
+			1 = { change_primary_culture = burmese }
+			1 = { change_primary_culture = chin }
+			1 = { change_primary_culture = karen }
+			1 = { change_primary_culture = kachin }
+			1 = { change_primary_culture = arakanese }
+			1 = { change_primary_culture = papuan }
+			1 = { change_primary_culture = maori }
+			1 = { change_primary_culture = melanesian }
+			1 = { change_primary_culture = polynesian }
+			1 = { change_primary_culture = aboriginal }
+			1 = { change_primary_culture = yura }
+			1 = { change_primary_culture = paman }
+			1 = { change_primary_culture = gunwinyguan }
+			1 = { change_primary_culture = palawa }
+			1 = { change_primary_culture = kulin }
+			1 = { change_primary_culture = gamilaraay }
+			1 = { change_primary_culture = nyoongah }
+			1 = { change_primary_culture = assamese }
+			1 = { change_primary_culture = bengali }
+			1 = { change_primary_culture = kochi }
+			1 = { change_primary_culture = bihari }
+			1 = { change_primary_culture = pahari }
+			1 = { change_primary_culture = nepali }
+			1 = { change_primary_culture = oriya }
+			1 = { change_primary_culture = sinhala }
+			1 = { change_primary_culture = avadhi }
+			1 = { change_primary_culture = kanauji }
+			1 = { change_primary_culture = vindhyan }
+			1 = { change_primary_culture = panjabi }
+			1 = { change_primary_culture = kashmiri }
+			1 = { change_primary_culture = gujarati }
+			1 = { change_primary_culture = parsi }
+			1 = { change_primary_culture = saurashtri }
+			1 = { change_primary_culture = marathi }
+		}
+		}
+		ROOT = {
+			every_owned_province = { 
+				change_culture = ROOT
+			}	
+		}
+	}
+}
+
+country_event = {		#Curse the Cultures - Player - 4
+	id = cu.13
+	title = "cu10_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu10_desc"
+	
+	is_triggered_only = yes
+
+	option = {
+		name = cu.10a
+		hidden_effect = {
+			random_list = {
+			1 = { change_primary_culture = sindhi }
+			1 = { change_primary_culture = rajput }
+			1 = { change_primary_culture = malvi }
+			1 = { change_primary_culture = kannada }
+			1 = { change_primary_culture = malayalam }
+			1 = { change_primary_culture = tamil }
+			1 = { change_primary_culture = telegu }
+			1 = { change_primary_culture = gondi }
+			1 = { change_primary_culture = garjati }
+			1 = { change_primary_culture = jharkhandi }
+			1 = { change_primary_culture = mali }
+			1 = { change_primary_culture = songhai }
+			1 = { change_primary_culture = soninke }
+			1 = { change_primary_culture = bambara }
+			1 = { change_primary_culture = bozo }
+			1 = { change_primary_culture = dyola }
+			1 = { change_primary_culture = hausa }
+			1 = { change_primary_culture = kanuri }
+			1 = { change_primary_culture = bilala }
+			1 = { change_primary_culture = tunjur }
+			1 = { change_primary_culture = tuareg }
+			1 = { change_primary_culture = senegambian }
+			1 = { change_primary_culture = fulani }
+			1 = { change_primary_culture = yorumba }
+			1 = { change_primary_culture = aka }
+			1 = { change_primary_culture = nupe }
+			1 = { change_primary_culture = fon }
+			1 = { change_primary_culture = mossi }
+			1 = { change_primary_culture = dagomba }
+			1 = { change_primary_culture = makua }
+			1 = { change_primary_culture = nguni }
+			1 = { change_primary_culture = bemba }
+			1 = { change_primary_culture = khoisan }
+			1 = { change_primary_culture = shona }
+			1 = { change_primary_culture = nyasa }
+			1 = { change_primary_culture = lunda }
+			1 = { change_primary_culture = luba }
+			1 = { change_primary_culture = kongolese }
+			1 = { change_primary_culture = yaka }
+			1 = { change_primary_culture = mbundu }
+			1 = { change_primary_culture = chokwe }
+			1 = { change_primary_culture = mbangala }
+			1 = { change_primary_culture = jukun }
+			1 = { change_primary_culture = sawabantu }
+			1 = { change_primary_culture = rwandan }
+			1 = { change_primary_culture = ganda }
+			1 = { change_primary_culture = masaba }
+			1 = { change_primary_culture = madagasque }
+			1 = { change_primary_culture = takama }
+			1 = { change_primary_culture = bena }
+			1 = { change_primary_culture = bantu }
+			1 = { change_primary_culture = swahili }
+			1 = { change_primary_culture = somali }
+			1 = { change_primary_culture = harari }
+			1 = { change_primary_culture = afar }
+			1 = { change_primary_culture = oromo }
+			1 = { change_primary_culture = tigray }
+			1 = { change_primary_culture = sidamo }
+			1 = { change_primary_culture = amhara }
+			1 = { change_primary_culture = acholi }
+			1 = { change_primary_culture = nubian }
+			1 = { change_primary_culture = beja }
+			1 = { change_primary_culture = evenk }
+			1 = { change_primary_culture = yakut }
+			1 = { change_primary_culture = yukagyr }
+			1 = { change_primary_culture = buryat }
+			1 = { change_primary_culture = tungus }
+			1 = { change_primary_culture = manchu }
+			1 = { change_primary_culture = ainu }
+			1 = { change_primary_culture = kamchatkan }
+			1 = { change_primary_culture = astrakhani }
+			1 = { change_primary_culture = bashkir }
+			1 = { change_primary_culture = crimean }
+			1 = { change_primary_culture = kazani }
+			1 = { change_primary_culture = mishary }
+			1 = { change_primary_culture = nogaybak }
+			1 = { change_primary_culture = siberian }
+			1 = { change_primary_culture = atlantean }
+			2 = { change_primary_culture = spartan }
+			2 = { change_primary_culture = athenian }
+			2 = { change_primary_culture = old_egyptian }
+			3 = { change_primary_culture = roman }
+			1 = { change_primary_culture = jan_mayenese }
+			1 = { change_primary_culture = pruthenian }
+			1 = { change_primary_culture = phoenician }
+			1 = { change_primary_culture = scanian }
+			1 = { change_primary_culture = anglosaxon }
+			2 = { change_primary_culture = babylonian }
+			1 = { change_primary_culture = etrurian }
+			1 = { change_primary_culture = parthian }
+			1 = { change_primary_culture = aramaic }
+			1 = { change_primary_culture = hebrew }
+			1 = { change_primary_culture = scythian }
+		}
+		}
+		ROOT = {
+			every_owned_province = { 
+				change_culture = ROOT
+			}	
+		}
+	}
+}
+
+country_event = {		#Curse the Cultures - AI - 1
+	id = cu.14
+	title = "cu9_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu9_desc"
+	
+	fire_only_once = yes
+	
+	trigger ={
+		AND {
+			ai = yes
+			had_global_flag = {
+				flag = cu_culture_cursed_ai
+				days = 1
+			}
+		}
+	}
+
+	option = {
+		name = cu.14a
+		every_country {
+			limit = { ai = no }
+			every_country_including_inactive = {
+				limit = { ai =yes }
+				random_list = {
+					50 = { country_event = { id = cu.15 } }
+					30 = { country_event = { id = cu.16 } }
+					10 = { country_event = { id = cu.17 } }
+					10 = { country_event = { id = cu.18 } }
+				}
+			}
+		}
+		set_global_flag = cu_culture_cursed_ai_dsc
+		set_global_flag = cu_ai_boost_culture
+	}
+}
+
+country_event = {		#Curse the Cultures - AI - 1
+	id = cu.15
+	title = "cu10_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu10_desc"
+	
+	is_triggered_only = yes
+
+	option = {
+		name = cu.10a
+		hidden_effect = {
+			random_list = {
+				1 = { change_primary_culture = pommeranian }
+				1 = { change_primary_culture = prussian }
+				1 = { change_primary_culture = lower_saxon }
+				1 = { change_primary_culture = hannoverian }
+				1 = { change_primary_culture = hessian }
+				1 = { change_primary_culture = saxon }
+				1 = { change_primary_culture = franconian }
+				1 = { change_primary_culture = swabian }
+				1 = { change_primary_culture = swiss }
+				1 = { change_primary_culture = bavarian }
+				1 = { change_primary_culture = austrian }
+				1 = { change_primary_culture = dutch }
+				1 = { change_primary_culture = flemish }
+				1 = { change_primary_culture = frisian }
+				1 = { change_primary_culture = swedish }
+				1 = { change_primary_culture = danish }
+				1 = { change_primary_culture = norwegian }
+				1 = { change_primary_culture = finnish }
+				1 = { change_primary_culture = sapmi }
+				1 = { change_primary_culture = icelandic }
+				1 = { change_primary_culture = english }
+				1 = { change_primary_culture = american }
+				1 = { change_primary_culture = welsh }
+				1 = { change_primary_culture = cornish }
+				1 = { change_primary_culture = scottish }
+				1 = { change_primary_culture = irish }
+				1 = { change_primary_culture = highland_scottish }
+				1 = { change_primary_culture = lombard }
+				1 = { change_primary_culture = tuscan }
+				1 = { change_primary_culture = sardinian }
+				1 = { change_primary_culture = romagnan }
+				1 = { change_primary_culture = ligurian }
+				1 = { change_primary_culture = venetian }
+				1 = { change_primary_culture = dalmatian }
+				1 = { change_primary_culture = neapolitan }
+				1 = { change_primary_culture = piedmontese }
+				1 = { change_primary_culture = umbrian }
+				1 = { change_primary_culture = sicilian }
+				1 = { change_primary_culture = maltese }
+				1 = { change_primary_culture = castillian }
+				1 = { change_primary_culture = mexican }
+				1 = { change_primary_culture = leonese }
+				1 = { change_primary_culture = aragonese }
+				1 = { change_primary_culture = catalan }
+				1 = { change_primary_culture = galician }
+				1 = { change_primary_culture = andalucian }
+				1 = { change_primary_culture = portugese }
+				1 = { change_primary_culture = brazilian }
+				1 = { change_primary_culture = basque }
+				1 = { change_primary_culture = cosmopolitan_french }
+				1 = { change_primary_culture = gascon }
+				1 = { change_primary_culture = normand }
+				1 = { change_primary_culture = aquitaine }
+				1 = { change_primary_culture = burgundian }
+				1 = { change_primary_culture = occitain }
+				1 = { change_primary_culture = wallonian }
+				1 = { change_primary_culture = breton }
+				1 = { change_primary_culture = uralic }
+				1 = { change_primary_culture = samoyed }
+				1 = { change_primary_culture = ostyaki }
+				1 = { change_primary_culture = ingrian }
+				1 = { change_primary_culture = croatian }
+				1 = { change_primary_culture = serbian }
+				1 = { change_primary_culture = slovene }
+				1 = { change_primary_culture = bosnian }
+				1 = { change_primary_culture = bulgarian }
+				1 = { change_primary_culture = albanian }
+				1 = { change_primary_culture = czech }
+				1 = { change_primary_culture = polish }
+				1 = { change_primary_culture = schlesian }
+				1 = { change_primary_culture = sorbian }
+				1 = { change_primary_culture = slovak }
+				1 = { change_primary_culture = transylvanian }
+				1 = { change_primary_culture = romanian }
+				1 = { change_primary_culture = hungarian }
+				1 = { change_primary_culture = russian }
+				1 = { change_primary_culture = novgorodian }
+				1 = { change_primary_culture = ryazanian }
+				1 = { change_primary_culture = byelorussian }
+				1 = { change_primary_culture = ruthenian }
+				1 = { change_primary_culture = karelian }
+				1 = { change_primary_culture = estonian }
+				1 = { change_primary_culture = lithuanian }
+				1 = { change_primary_culture = latvian }
+				1 = { change_primary_culture = greek }
+				1 = { change_primary_culture = pontic_greek }
+				1 = { change_primary_culture = goths }
+				1 = { change_primary_culture = georgian }
+				1 = { change_primary_culture = circassian }
+				1 = { change_primary_culture = dagestani }
+				1 = { change_primary_culture = armenian }
+				1 = { change_primary_culture = turkish }
+				1 = { change_primary_culture = al_misr_arabic }
+				1 = { change_primary_culture = al_suryah_arabic }
+				1 = { change_primary_culture = al_iraqiya_arabic }
+				1 = { change_primary_culture = gulf_arabic }
+				1 = { change_primary_culture = bedouin_arabic }
+				1 = { change_primary_culture = mahri_culture }
+				1 = { change_primary_culture = hejazi_culture }
+				1 = { change_primary_culture = omani_culture }
+			}
+		}
+		ROOT = {
+			every_owned_province = { 
+				change_culture = ROOT
+			}	
+		}
+	}
+}
+
+country_event = {		#Curse the Cultures -  AI - 2
+	id = cu.16
+	title = "cu10_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu10_desc"
+	
+	is_triggered_only = yes
+
+	option = {
+		name = cu.10a
+		hidden_effect = {
+			random_list = {
+			1 = { change_primary_culture = yemeni_culture }
+			1 = { change_primary_culture = moroccan }
+			1 = { change_primary_culture = tunisian }
+			1 = { change_primary_culture = algerian }
+			1 = { change_primary_culture = berber }
+			1 = { change_primary_culture = persian }
+			1 = { change_primary_culture = luri }
+			1 = { change_primary_culture = azerbaijani }
+			1 = { change_primary_culture = khorasani }
+			1 = { change_primary_culture = baluchi }
+			1 = { change_primary_culture = afghani }
+			1 = { change_primary_culture = kurdish }
+			1 = { change_primary_culture = mazandarani }
+			1 = { change_primary_culture = mongol }
+			1 = { change_primary_culture = chahar }
+			1 = { change_primary_culture = khalkha }
+			1 = { change_primary_culture = oirats }
+			1 = { change_primary_culture = uzbehk }
+			1 = { change_primary_culture = turkmeni }
+			1 = { change_primary_culture = uyghur }
+			1 = { change_primary_culture = khazak }
+			1 = { change_primary_culture = kirgiz }
+			1 = { change_primary_culture = aztek }
+			1 = { change_primary_culture = totonac }
+			1 = { change_primary_culture = purepecha }
+			1 = { change_primary_culture = matlatzinca }
+			1 = { change_primary_culture = tecos }
+			1 = { change_primary_culture = tepic }
+			1 = { change_primary_culture = chichimecan }
+			1 = { change_primary_culture = guamares }
+			1 = { change_primary_culture = otomi }
+			1 = { change_primary_culture = yaqui }
+			1 = { change_primary_culture = yucatec }
+			1 = { change_primary_culture = putun }
+			1 = { change_primary_culture = mayan }
+			1 = { change_primary_culture = highland_mayan }
+			1 = { change_primary_culture = lacandon }
+			1 = { change_primary_culture = wastek }
+			1 = { change_primary_culture = chontales }
+			1 = { change_primary_culture = kuba }
+			1 = { change_primary_culture = zapotek }
+			1 = { change_primary_culture = mixtec }
+			1 = { change_primary_culture = tlapanec }
+			1 = { change_primary_culture = inca }
+			1 = { change_primary_culture = aimara }
+			1 = { change_primary_culture = diaguita }
+			1 = { change_primary_culture = chimuan }
+			1 = { change_primary_culture = tupinamba }
+			1 = { change_primary_culture = guarani }
+			1 = { change_primary_culture = charruan }
+			1 = { change_primary_culture = ge }
+			1 = { change_primary_culture = jivaro }
+			1 = { change_primary_culture = chachapoyan }
+			1 = { change_primary_culture = muisca }
+			1 = { change_primary_culture = cara }
+			1 = { change_primary_culture = miskito }
+			1 = { change_primary_culture = chacoan }
+			1 = { change_primary_culture = mapuche }
+			1 = { change_primary_culture = patagonian }
+			1 = { change_primary_culture = het }
+			1 = { change_primary_culture = huarpe }
+			1 = { change_primary_culture = arawak }
+			1 = { change_primary_culture = maipurean }
+			1 = { change_primary_culture = carib }
+			1 = { change_primary_culture = guajiro }
+			1 = { change_primary_culture = aleutian }
+			1 = { change_primary_culture = inuit }
+			1 = { change_primary_culture = shawnee }
+			1 = { change_primary_culture = illini }
+			1 = { change_primary_culture = miami }
+			1 = { change_primary_culture = anishinabe }
+			1 = { change_primary_culture = algonquin }
+			1 = { change_primary_culture = cree }
+			1 = { change_primary_culture = innu }
+			1 = { change_primary_culture = mesquakie }
+			1 = { change_primary_culture = cheyenne }
+			1 = { change_primary_culture = blackfoot }
+			1 = { change_primary_culture = arapaho }
+			1 = { change_primary_culture = plains_cree }
+			1 = { change_primary_culture = bungi }
+			1 = { change_primary_culture = delaware }
+			1 = { change_primary_culture = abenaki }
+			1 = { change_primary_culture = mikmaq }
+			1 = { change_primary_culture = maliseet }
+			1 = { change_primary_culture = mahican }
+			1 = { change_primary_culture = powhatan }
+			1 = { change_primary_culture = pequot }
+			1 = { change_primary_culture = massachusset }
+			1 = { change_primary_culture = iroquois }
+			1 = { change_primary_culture = cherokee }
+			1 = { change_primary_culture = huron }
+			1 = { change_primary_culture = laurentian }
+			1 = { change_primary_culture = tionontate }
+			1 = { change_primary_culture = susquehannock }
+			1 = { change_primary_culture = dakota }
+			1 = { change_primary_culture = nakota }
+			1 = { change_primary_culture = chiwere }
+			1 = { change_primary_culture = osage }
+			1 = { change_primary_culture = wichita }
+			1 = { change_primary_culture = caddo }
+			}
+		}
+		ROOT = {
+			every_owned_province = { 
+				change_culture = ROOT
+			}	
+		}
+	}
+}
+
+country_event = {		#Curse the Cultures - AI - 3
+	id = cu.17
+	title = "cu10_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu10_desc"
+	
+	is_triggered_only = yes
+
+	option = {
+		name = cu.10a
+		hidden_effect = {
+			random_list = {
+			1 = { change_primary_culture = pawnee }
+			1 = { change_primary_culture = creek }
+			1 = { change_primary_culture = choctaw }
+			1 = { change_primary_culture = chickasaw }
+			1 = { change_primary_culture = yuchi }
+			1 = { change_primary_culture = yoron }
+			1 = { change_primary_culture = catawba }
+			1 = { change_primary_culture = natchez }
+			1 = { change_primary_culture = yamasee }
+			1 = { change_primary_culture = pueblo }
+			1 = { change_primary_culture = piman }
+			1 = { change_primary_culture = shoshone }
+			1 = { change_primary_culture = kiowa }
+			1 = { change_primary_culture = apache }
+			1 = { change_primary_culture = mescalero }
+			1 = { change_primary_culture = lipan }
+			1 = { change_primary_culture = navajo }
+			1 = { change_primary_culture = chipewyan }
+			1 = { change_primary_culture = haida }
+			1 = { change_primary_culture = athabascan }
+			1 = { change_primary_culture = salish }
+			1 = { change_primary_culture = chinook }
+			1 = { change_primary_culture = yokuts }
+			1 = { change_primary_culture = manchu_new }
+			1 = { change_primary_culture = chihan }
+			1 = { change_primary_culture = cantonese }
+			1 = { change_primary_culture = jin }
+			1 = { change_primary_culture = wu }
+			1 = { change_primary_culture = chimin }
+			1 = { change_primary_culture = hakka }
+			1 = { change_primary_culture = gan }
+			1 = { change_primary_culture = xiang }
+			1 = { change_primary_culture = sichuanese }
+			1 = { change_primary_culture = jianghuai }
+			1 = { change_primary_culture = xibei }
+			1 = { change_primary_culture = hubei }
+			1 = { change_primary_culture = zhongyuan }
+			1 = { change_primary_culture = shandong_culture }
+			1 = { change_primary_culture = vietnamese }
+			1 = { change_primary_culture = korean }
+			1 = { change_primary_culture = togoku }
+			1 = { change_primary_culture = japanese }
+			1 = { change_primary_culture = kyushuan }
+			1 = { change_primary_culture = tibetan }
+			1 = { change_primary_culture = yi }
+			1 = { change_primary_culture = bai }
+			1 = { change_primary_culture = miao }
+			1 = { change_primary_culture = malayan }
+			1 = { change_primary_culture = sumatran }
+			1 = { change_primary_culture = acehnese }
+			1 = { change_primary_culture = javanese }
+			1 = { change_primary_culture = sundanese }
+			1 = { change_primary_culture = filipino }
+			1 = { change_primary_culture = bornean }
+			1 = { change_primary_culture = madagascan }
+			1 = { change_primary_culture = sulawesi }
+			1 = { change_primary_culture = moluccan }
+			1 = { change_primary_culture = nusa_tenggara }
+			1 = { change_primary_culture = cham }
+			1 = { change_primary_culture = central_thai }
+			1 = { change_primary_culture = northern_thai }
+			1 = { change_primary_culture = lao }
+			1 = { change_primary_culture = shan }
+			1 = { change_primary_culture = zhuang }
+			1 = { change_primary_culture = khmer }
+			1 = { change_primary_culture = mon }
+			1 = { change_primary_culture = burmese }
+			1 = { change_primary_culture = chin }
+			1 = { change_primary_culture = karen }
+			1 = { change_primary_culture = kachin }
+			1 = { change_primary_culture = arakanese }
+			1 = { change_primary_culture = papuan }
+			1 = { change_primary_culture = maori }
+			1 = { change_primary_culture = melanesian }
+			1 = { change_primary_culture = polynesian }
+			1 = { change_primary_culture = aboriginal }
+			1 = { change_primary_culture = yura }
+			1 = { change_primary_culture = paman }
+			1 = { change_primary_culture = gunwinyguan }
+			1 = { change_primary_culture = palawa }
+			1 = { change_primary_culture = kulin }
+			1 = { change_primary_culture = gamilaraay }
+			1 = { change_primary_culture = nyoongah }
+			1 = { change_primary_culture = assamese }
+			1 = { change_primary_culture = bengali }
+			1 = { change_primary_culture = kochi }
+			1 = { change_primary_culture = bihari }
+			1 = { change_primary_culture = pahari }
+			1 = { change_primary_culture = nepali }
+			1 = { change_primary_culture = oriya }
+			1 = { change_primary_culture = sinhala }
+			1 = { change_primary_culture = avadhi }
+			1 = { change_primary_culture = kanauji }
+			1 = { change_primary_culture = vindhyan }
+			1 = { change_primary_culture = panjabi }
+			1 = { change_primary_culture = kashmiri }
+			1 = { change_primary_culture = gujarati }
+			1 = { change_primary_culture = parsi }
+			1 = { change_primary_culture = saurashtri }
+			1 = { change_primary_culture = marathi }
+			}
+		}
+		ROOT = {
+			every_owned_province = { 
+				change_culture = ROOT
+			}	
+		}
+	}
+}
+
+country_event = {		#Curse the Cultures - AI - 4
+	id = cu.18
+	title = "cu10_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu10_desc"
+	
+	is_triggered_only = yes
+
+	option = {
+		name = cu.10a
+		hidden_effect = {
+			random_list = {
+			1 = { change_primary_culture = sindhi }
+			1 = { change_primary_culture = rajput }
+			1 = { change_primary_culture = malvi }
+			1 = { change_primary_culture = kannada }
+			1 = { change_primary_culture = malayalam }
+			1 = { change_primary_culture = tamil }
+			1 = { change_primary_culture = telegu }
+			1 = { change_primary_culture = gondi }
+			1 = { change_primary_culture = garjati }
+			1 = { change_primary_culture = jharkhandi }
+			1 = { change_primary_culture = mali }
+			1 = { change_primary_culture = songhai }
+			1 = { change_primary_culture = soninke }
+			1 = { change_primary_culture = bambara }
+			1 = { change_primary_culture = bozo }
+			1 = { change_primary_culture = dyola }
+			1 = { change_primary_culture = hausa }
+			1 = { change_primary_culture = kanuri }
+			1 = { change_primary_culture = bilala }
+			1 = { change_primary_culture = tunjur }
+			1 = { change_primary_culture = tuareg }
+			1 = { change_primary_culture = senegambian }
+			1 = { change_primary_culture = fulani }
+			1 = { change_primary_culture = yorumba }
+			1 = { change_primary_culture = aka }
+			1 = { change_primary_culture = nupe }
+			1 = { change_primary_culture = fon }
+			1 = { change_primary_culture = mossi }
+			1 = { change_primary_culture = dagomba }
+			1 = { change_primary_culture = makua }
+			1 = { change_primary_culture = nguni }
+			1 = { change_primary_culture = bemba }
+			1 = { change_primary_culture = khoisan }
+			1 = { change_primary_culture = shona }
+			1 = { change_primary_culture = nyasa }
+			1 = { change_primary_culture = lunda }
+			1 = { change_primary_culture = luba }
+			1 = { change_primary_culture = kongolese }
+			1 = { change_primary_culture = yaka }
+			1 = { change_primary_culture = mbundu }
+			1 = { change_primary_culture = chokwe }
+			1 = { change_primary_culture = mbangala }
+			1 = { change_primary_culture = jukun }
+			1 = { change_primary_culture = sawabantu }
+			1 = { change_primary_culture = rwandan }
+			1 = { change_primary_culture = ganda }
+			1 = { change_primary_culture = masaba }
+			1 = { change_primary_culture = madagasque }
+			1 = { change_primary_culture = takama }
+			1 = { change_primary_culture = bena }
+			1 = { change_primary_culture = bantu }
+			1 = { change_primary_culture = swahili }
+			1 = { change_primary_culture = somali }
+			1 = { change_primary_culture = harari }
+			1 = { change_primary_culture = afar }
+			1 = { change_primary_culture = oromo }
+			1 = { change_primary_culture = tigray }
+			1 = { change_primary_culture = sidamo }
+			1 = { change_primary_culture = amhara }
+			1 = { change_primary_culture = acholi }
+			1 = { change_primary_culture = nubian }
+			1 = { change_primary_culture = beja }
+			1 = { change_primary_culture = evenk }
+			1 = { change_primary_culture = yakut }
+			1 = { change_primary_culture = yukagyr }
+			1 = { change_primary_culture = buryat }
+			1 = { change_primary_culture = tungus }
+			1 = { change_primary_culture = manchu }
+			1 = { change_primary_culture = ainu }
+			1 = { change_primary_culture = kamchatkan }
+			1 = { change_primary_culture = astrakhani }
+			1 = { change_primary_culture = bashkir }
+			1 = { change_primary_culture = crimean }
+			1 = { change_primary_culture = kazani }
+			1 = { change_primary_culture = mishary }
+			1 = { change_primary_culture = nogaybak }
+			1 = { change_primary_culture = siberian }
+			1 = { change_primary_culture = atlantean }
+			2 = { change_primary_culture = spartan }
+			2 = { change_primary_culture = athenian }
+			2 = { change_primary_culture = old_egyptian }
+			3 = { change_primary_culture = roman }
+			1 = { change_primary_culture = jan_mayenese }
+			1 = { change_primary_culture = pruthenian }
+			1 = { change_primary_culture = phoenician }
+			1 = { change_primary_culture = scanian }
+			1 = { change_primary_culture = anglosaxon }
+			2 = { change_primary_culture = babylonian }
+			1 = { change_primary_culture = etrurian }
+			1 = { change_primary_culture = parthian }
+			1 = { change_primary_culture = aramaic }
+			1 = { change_primary_culture = hebrew }
+			1 = { change_primary_culture = scythian }
+		}
+		}
+		ROOT = {
+			every_owned_province = { 
+				change_culture = ROOT
+			}	
+		}
+	}
+}
+
+country_event = {		#Curse the Cultures - AI - Culture Change
+	id = cu.19
+	title = "cu9_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu9_desc"
+
+	
+	trigger ={
+		ai = yes
+		has_global_flag = cu_culture_cursed_ai
+		
+			any_owned_province = {
+				NOT = { culture = ROOT }
+			}
+	}
+	
+	mean_time_to_happen = {
+		months = 16
+		modifier = {
+			factor = 1
+			has_global_flag = cu_ai_boost_culture
+		}
+	}
+
+	option = {
+		name = cu.19a
+		random_owned_province = {
+			limit = {
+				NOT = { culture = ROOT }
+			}
+			change_culture = ROOT
+		}
+	}
+}
+
+country_event = {		#Remove Culture requirements for Formation decisions
+	id = cu.20
+	title = "cu20_title"
+	picture = "RELIGIOUS_WARS_eventPicture"
+	desc = "cu20_desc"
+	
+	is_triggered_only = yes
+
+	option = {
+		name = cu.20a
+		hidden_effect = {
+			set_global_flag = cu_removed_culture_desc
+		}
+		custom_tooltip = cu_removed_culture_tt
+	}
+	option = {
+		name = cu.20b
+	}
+}

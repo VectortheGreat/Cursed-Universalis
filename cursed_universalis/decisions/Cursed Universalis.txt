@@ -1,0 +1,138 @@
+country_decisions = {
+
+	cursed_universalis_dcs1 = {
+		major = yes
+		potential = {
+			NOT = { ai = yes }
+			has_country_flag = cursed_universalis_decision
+		}
+		allow = {
+			has_country_flag = cursed_universalis_decision
+		}
+		effect = {
+			random_list = {
+				3.57 = { change_religion = catholic }
+				3.57 = { change_religion = orthodox }
+				3.57 = { change_religion = protestant }
+				3.57 = { change_religion = reformed }
+				3.57 = { change_religion = coptic }
+				3.57 = { change_religion = sunni }
+				3.57 = { change_religion = shiite }
+				3.57 = { change_religion = ibadi }
+				3.57 = { change_religion = buddhism }
+				3.57 = { change_religion = vajrayana }
+				3.57 = { change_religion = mahayana }
+				3.57 = { change_religion = confucianism }
+				3.57 = { change_religion = shinto }
+				3.57 = { change_religion = hinduism }
+				3.57 = { change_religion = sikhism }
+				3.57 = { change_religion = animism }
+				3.57 = { change_religion = shamanism }
+				3.57 = { change_religion = totemism }
+				3.57 = { change_religion = inti }
+				3.57 = { change_religion = nahuatl }
+				3.57 = { change_religion = mesoamerican_religion }
+				3.57 = { change_religion = norse_pagan_reformed }
+				3.57 = { change_religion = tengri_pagan_reformed }
+				3.57 = { change_religion = jewish }
+				3.57 = { change_religion = zoroastrian }
+				3.57 = { change_religion = dreamtime }
+				3.57 = { change_religion = hussite }
+				3.57 = { change_religion = anglican }	
+			}
+			ROOT = {
+					every_owned_province = { 
+						change_religion = ROOT
+					}	
+			}
+			clr_country_flag = cursed_universalis_decision
+		}
+	}
+	cursed_universalis_dcs2 = {
+		major = yes
+		potential = {
+			ai = yes
+			NOT = { has_country_flag = the_world_is_cursed_dcs }
+			has_global_flag = the_world_is_cursed_dcs2
+		}
+		allow = {
+			ai = yes
+		}
+		effect = {
+			ROOT = {
+					every_owned_province = { 
+						change_religion = ROOT
+					}	
+			}
+			set_country_flag = the_world_is_cursed_dcs
+		}
+		ai_importance = 1000
+		ai_will_do = {
+				factor = 1
+		}
+	}
+	cursed_universalis_dcs3 = {
+		potential = {
+			NOT = { ai = yes }
+			has_country_flag = cursed_universalis_decision
+		}
+		allow = {
+			has_country_flag = cursed_universalis_decision
+		}
+		effect = {
+			clr_country_flag = cursed_universalis_decision31
+			clr_country_flag = cursed_universalis_decision
+		}
+	}
+	cursed_universalis_dcs_culture_ai = {
+		major = yes
+		potential = {
+			NOT = { has_country_flag = cu_culture_cursed_ai_dsc_cx }
+			has_global_flag = cu_culture_cursed_ai_dsc
+			ai = yes
+		}
+		allow = {
+		}
+		effect = {
+			ROOT = {
+					every_owned_province = { 
+						change_culture = ROOT
+					}	
+			}
+			set_country_flag = cu_culture_cursed_ai_dsc_cx
+		}
+		ai_importance = 1000
+		ai_will_do = {
+				factor = 1
+		}
+	}
+	cursed_universalis_form_decisions_open = {	#Open
+		major = yes
+		potential = {
+			NOT = { has_country_flag = cursed_universalis_form_decisions }
+			NOT = { has_country_flag = cu_finish_decisions }
+		}
+		allow = {
+		}
+		effect = {
+			set_country_flag = cursed_universalis_form_decisions
+		}
+		ai_importance = 1000
+		ai_will_do = {
+				factor = 1
+		}
+	}
+	cursed_universalis_form_decisions_hide = {	#Hide
+		major = yes
+		potential = {
+			NOT = { ai = yes }
+			has_country_flag = cursed_universalis_form_decisions
+			NOT = { has_country_flag = cu_finish_decisions }
+		}
+		allow = {
+		}
+		effect = {
+			clr_country_flag = cursed_universalis_form_decisions
+		}
+	}
+}
